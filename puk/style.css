@@ -1,0 +1,18 @@
+.row   {
+    clear:both;
+}
+.spot {
+    float:left;
+    background-color: lightsteelblue;
+    width:50px;height: 50px;
+    margin:1px;
+    text-align: center; padding: 3px;
+}
+
+.puk {
+    background-color: black;
+    width: 20px; height: 20px;
+    margin:auto;
+    border-radius: 50%;
+
+}
