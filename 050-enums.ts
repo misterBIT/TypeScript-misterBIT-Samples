@@ -7,6 +7,7 @@ enum Color1 { Red = 1, Green, Blue };
 //  manually set the values
 enum Color2 { Red = 1, Green = 2, Blue = 9 };
 
-var colorName: string = Color[9];
+var colorName: string = Color2[9];
 
-console.log("Color: ", Color["Green"]);
+console.log("Color name: ", colorName);
+console.log("Color: ", Color2["Green"]);

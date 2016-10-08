@@ -12,7 +12,7 @@ class Person {
         return this._firstname;
     }
 
-    set firstname(newName: string) {
+    set firstname(newName: string) {                                                                                                                                                                                                                                                                           
         if (newName.length > 1) {
             this._firstname = newName;
         }
@@ -31,7 +31,7 @@ console.log('Specie is: ' +  Person.specie);
 p.firstname = "Bob Smith";
 p.firstname = "B";
 
-console.log(p.firstname);
+console.log('so name is: ', p.firstname);
 
 // ------------------------- Again, Only structure is important:
 
@@ -49,7 +49,7 @@ function makeTheTalk(person : IHuman) {
 }
 
 var user1 = {firstname: "Jane", lastname: "puk"};
-var user2 = {firstname: "Puki", lastname: "Puk", speak: (s: string)=>console.log('POJO: Ahu!')};
+var user2 = {firstname: "Puki", lastname: "Puk", speak: (s: string)=>console.log('Puki: Ahu!')};
 var user3 = new Person('Muki');
 
 console.log('Making them speak!');
@@ -63,30 +63,51 @@ console.log(makeTheTalk(user3));
 
 // instanceOf Type Guard ---------------------------------------------------------------
 
-// class Animal {name:string}
-// class Cat extends Animal {miyahuu(){}}
 
-// function isCat(a: Animal) : a is Cat {
-//     return a.name === 'Mitsi';
-// } 
-// var pet:Animal = new Cat();
-// if (pet instanceof Cat || isCat(pet)) {
-//     pet.miyahuu();
-// } else {
-//     //pet.miyahuu();
-// }
+interface Foo {
+    foo: number;
+    common: string;
+}
 
+interface Bar {
+    bar: number;
+    common: string;
+}
+
+/**
+ * User Defined Type Guard!
+ */
+function isFoo(arg: any): arg is Foo {
+    return arg.foo !== undefined;
+}
+
+
+class Animal {name:string}
+class Cat extends Animal {miyahuu(){console.log('Miyauuuu');}}
+
+function isCat(a: Animal): a is Cat {
+    return a.name === 'Mitsi';
+} 
+
+function makeNoise ( pet:Animal ) {
+    // cant force him to miyahuu
+    //pet.miyahuu();
+    if (pet instanceof Cat)     pet.miyahuu();
+    if (isCat(pet))             pet.miyahuu();
+}
+makeNoise(new Cat());
 
 // Classes & Interfaces ---------------------------------------------------------------
-interface ClockInterface {
-    currentTime: Date;
-    setTime(d: Date);
-}
+// Boring:
+// interface ClockInterface {
+//     currentTime: Date;
+//     setTime(d: Date);
+// }
 
-class Clock implements ClockInterface  {
-    currentTime: Date;
-    setTime(d: Date) {
-        this.currentTime = d;
-    }
-    constructor(h: number, m: number) { }
-}
+// class Clock implements ClockInterface  {
+//     currentTime: Date;
+//     setTime(d: Date) {
+//         this.currentTime = d;
+//     }
+//     constructor(h: number, m: number) { }
+// }

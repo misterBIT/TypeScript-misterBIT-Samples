@@ -43,15 +43,24 @@ myArray = ["Bob", "Fred"];
 
 // Hybrid Types ------------------------------------------------------------
 interface Counter {
-    (start: number): string;
+    (start: number): void;
     interval: number;
     reset(): void;
 }
 
-var c1: Counter;
-// c1(10);
-// c1.reset();
-// c1.interval = 5.0;
+// This is a weird object we got from somewhere
+var func : any = (s:number) : void => {}
+func.interval = 9;
+func.reset = ()=>null;
+
+var c1: Counter = func;
+
+// From here on, we get TS help:
+c1(10);
+c1.reset();
+c1.interval = 5.0;
+console.dir(c1);
+
 
 
 

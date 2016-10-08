@@ -1,3 +1,5 @@
+// -------------------- The Identity -------------------------------------------------
+
 // Accept only Strings
 //function identity(arg: string): string {
 //    return arg;
@@ -9,22 +11,21 @@
 //    return arg;
 //}
 
-
-
 function identity<T>(arg: T): T {
     return arg;
 }
 
-// There are cases when we will have to state the type param
-var d = identity<Date>(new Date());
-d.getHours();
-
-// usually in can be inferred:
+// Usually, the type param can be inferred:
 var ss = identity("Samba");
-console.log('First letter: ' + ss.charAt(0));
+// console.log('First letter: ' + ss.charAt(0));
+
 var f = identity({foo: ()=>console.log('ffffooo!')});
 f.foo();
+var d = identity(new Date());
+d.getHours();
 
+
+// -------------------- About Generic Constraints ------------------------------------------------- 
 
 function try1<T>(arg: T): T {
     // arg.length; // compile time error
@@ -35,15 +36,14 @@ function try2<T>(arg: T[]): T[] {
     return arg;
 }
 
-// --------------------Generic Constraints -------------------------------------------------
-
-
+// Lets add an interface:
 interface Lengthwise {
     length: number;
 }
 
+// See how we can contraint the type:
 function loggingIdentity<T extends Lengthwise>(arg: T): T {
-    console.log(arg.length);  // Now we know it has a .length property, so no more error
+    console.log(arg.length);  // Oki Doki
     return arg;
 }
 
@@ -58,8 +58,7 @@ class GenericNumber<T> {
 var myGenericNumber = new GenericNumber<number>();
 myGenericNumber.zeroValue = 0;
 myGenericNumber.add = function(x, y) { return x + y; };
-
-
+console.log('Result:', myGenericNumber.add(myGenericNumber.zeroValue, 8));
 
 var stringNumeric = new GenericNumber<string>();
 stringNumeric.zeroValue = "";

@@ -9,8 +9,16 @@
 <h1>Puks World</h1>
 
 <div id="world"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.39/system.js"></script>
+<script>
+  // set our baseURL reference path
+//   SystemJS.config({
+//     baseURL: '/js'
+//   });
 
-<script src="puk.js"></script>
+  // loads /js/main.js
+  SystemJS.import('bundle.js');
+</script>
 
 
 </body>

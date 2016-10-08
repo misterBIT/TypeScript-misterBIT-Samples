@@ -5,8 +5,8 @@ console.log('Starting Up!!');
 var isDone: boolean = false;
 var height: number = 6;
 
-var name: string = 'Charli';
-name = 'Miyahoo';
+var petName: string = 'Charli';
+petName = 'Charma';
 
 
 // ---------------------- ARRAYS ----------------------------------------------------
@@ -28,8 +28,6 @@ var users = [{ id: 1, name: "muki" },
 var x; // x is ANY forever
 x = 8;
 x = 'as'; 
-
-
 
 var notSure: any = 4;
 notSure = "maybe a string instead";
@@ -54,7 +52,6 @@ function callingFunction(txt: string, cb: (text: string) => void) {
 }
 callingFunction("puki", cb);
 // callingFunction("muki", "I am not a function I'm a free string");
-// Error: Argument of type 'string' is not assignable to parameter of type '(text: string) => void'.
 
 
 // ---------------------- TYPE INFERENCE ----------------------------------------------------
@@ -82,14 +79,14 @@ foo('a', 2);
 type numNumsOrFuncReturnsNum = number | number[] | (()=>number);
 function add7(p: numNumsOrFuncReturnsNum) : numNumsOrFuncReturnsNum {
    // These are called Type guards:
-   if (Array.isArray(p)) return p.map(i => i+7);
+   if (p instanceof Array) return p.map(i => i+7);
    else if (typeof p === 'number') return p + 7;
    else if (typeof p === 'function') return p()+7;
 }
 
 console.log('add7(9) : ', add7(9));
 console.log('add7([1, 2]) : ', add7([1,2]));
-console.log('add7(func()) : ', add7(()=>11));
+// console.log('add7(func()) : ', add7(()=>11));
 
 
 
